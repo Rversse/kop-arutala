@@ -267,7 +267,7 @@
     }
 
     /* Nama Item header tetap left */
-    thead th.th-nama { text-align: left; }
+    thead th.th-nama { text-align: center; }
 
     tbody tr {
       border-bottom: 1px solid #eef4e8;
@@ -430,7 +430,7 @@
         categories = [...new Set(allData.map(d => d.kategori))].sort();
 
         // Default: semua kategori terbuka
-        categories.forEach(k => { if (katOpen[k] === undefined) katOpen[k] = true; });
+        categories.forEach(k => { if (katOpen[k] === undefined) katOpen[k] = false; });
 
         const sel = document.getElementById("filter-kat");
         categories.forEach(kat => {
