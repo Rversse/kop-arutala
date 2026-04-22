@@ -16,24 +16,22 @@
       --blue-light : #3b82f6;
       --blue-pale  : #eff6ff;
       --blue-border: #bfdbfe;
-      --red-pale   : #fdecea;
-      --red-text   : #c0392b;
-      --orange-pale: #fff3e0;
-      --orange-text: #e65100;
-      --text-main  : #0f172a;
-      --text-muted : #64748b;
-      --white      : #ffffff;
-      --bg         : #f8fafc;
-      --card-bg    : #ffffff;
-      --mono       : 'Roboto Mono', monospace;
-      --radius     : 12px;
-      --shadow     : 0 2px 16px rgba(37,99,235,0.08);
+      --red-pale    : #fdecea;
+      --red-text    : #c0392b;
+      --orange-pale : #fff3e0;
+      --orange-text : #e65100;
+      --text-main   : #0f172a;
+      --text-muted  : #64748b;
+      --white       : #ffffff;
+      --bg          : #f8fafc;
+      --card-bg     : #ffffff;
+      --mono        : 'Roboto Mono', monospace;
+      --radius      : 12px;
+      --shadow      : 0 2px 16px rgba(37,99,235,0.08);
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--mono); background: var(--bg); color: var(--text-main); min-height: 100vh; padding-bottom: 80px; }
-
-    /* HEADER */
-    header { background: var(--white); color: var(--text-main); border-bottom: 3px solid var(--blue-mid); padding: 24px 24px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.08); text-align: center; }
+    header { background: var(--white); color: var(--text-main); border-bottom: 3px solid var(--blue-mid); padding: 24px 24px 20px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.12); text-align: center; }
     .brand { display: flex; flex-direction: column; align-items: center; gap: 4px; }
     .brand-text h1 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.06em; }
     .brand-text p { font-size: 0.68rem; opacity: 0.5; margin-top: 2px; letter-spacing: 0.12em; }
@@ -41,8 +39,6 @@
     #tanggal-hari-ini { font-size: 0.72rem; opacity: 0.6; font-weight: 500; }
     #last-updated { font-size: 0.65rem; opacity: 0.4; }
     #refresh-countdown { font-size: 0.65rem; opacity: 0.4; font-style: italic; }
-
-    /* CONTROLS */
     .controls { max-width: 900px; margin: 20px auto 0; padding: 0 16px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
     .search-wrap { flex: 1; min-width: 200px; position: relative; }
     .search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
@@ -51,40 +47,28 @@
     .toggle-tersedia { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: var(--text-muted); cursor: pointer; user-select: none; }
     .toggle-tersedia input { accent-color: var(--blue-light); width: 16px; height: 16px; cursor: pointer; }
     .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn { padding: 8px 14px; border: 1.5px solid var(--blue-border); border-radius: var(--radius); font-family: var(--mono); font-size: 0.78rem; background: var(--card-bg); color: var(--blue-mid); cursor: pointer; transition: background 0.15s, border-color 0.15s, transform 0.1s; white-space: nowrap; }
+    .btn { padding: 8px 14px; border: 1.5px solid var(--blue-border); border-radius: var(--radius); font-family: var(--mono); font-size: 0.78rem; background: var(--card-bg); color: var(--blue-mid); cursor: pointer; transition: background 0.15s, border-color 0.15s; white-space: nowrap; }
     .btn:hover { background: var(--blue-pale); border-color: var(--blue-light); }
-    .btn:active { transform: scale(0.96); }
-
-    /* STATS */
     .stats-bar { max-width: 900px; margin: 12px auto 0; padding: 0 16px; display: flex; gap: 8px; flex-wrap: wrap; }
     .stat-chip { font-size: 0.72rem; padding: 4px 12px; border-radius: 20px; background: var(--blue-pale); color: var(--blue-mid); border: 1px solid var(--blue-border); }
     .stat-chip span { font-weight: 700; }
-
-    /* TABLE WRAP */
     .table-wrap { max-width: 900px; margin: 16px auto 0; padding: 0 16px; }
-
-    /* ACCORDION */
     .kat-block { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 10px; overflow: hidden; }
     .kat-toggle { width: 100%; background: var(--blue-pale); border: none; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; font-family: var(--mono); font-size: 0.82rem; font-weight: 700; color: var(--blue-mid); letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 1px solid var(--blue-border); transition: background 0.15s; user-select: none; }
     .kat-toggle:hover { background: #dbeafe; }
-    .kat-toggle:active { background: #c7d7fe; }
     .kat-meta { display: flex; align-items: center; gap: 10px; }
     .kat-count { font-size: 0.68rem; background: var(--blue-border); color: var(--blue-dark); padding: 1px 8px; border-radius: 20px; font-weight: 500; text-transform: none; }
     .kat-arrow { font-size: 0.75rem; transition: transform 0.25s ease; }
     .kat-block.open .kat-arrow { transform: rotate(180deg); }
-
-    /* ACCORDION BODY — smooth slide with scroll */
-    .kat-body { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; }
-    .kat-block.open .kat-body { max-height: 500px; overflow-y: auto; overflow-x: auto; }
-
-    /* TABLE */
+    .kat-body { display: none; overflow-x: auto; }
+    .kat-block.open .kat-body { display: block; }
     table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
     thead { background: var(--blue-dark); color: var(--white); }
     thead th { padding: 11px 12px; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; text-align: center; }
     thead th.th-nama { text-align: center; }
-    tbody tr { border-bottom: 1px solid #e8f0fe; transition: background 0.12s, transform 0.1s; }
+    tbody tr { border-bottom: 1px solid #e8f0fe; transition: background 0.12s; }
     tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: #f0f7ff; transform: translateX(2px); }
+    tbody tr:hover { background: #f0f7ff; }
     td { padding: 10px 12px; white-space: nowrap; text-align: center; vertical-align: middle; }
     td.nama-col { text-align: left; white-space: normal; min-width: 140px; font-weight: 500; }
     tr.naik-signifikan { background: var(--orange-pale) !important; }
@@ -92,8 +76,6 @@
     tr.naik-signifikan td.nama-col { color: var(--orange-text); }
     .harga { font-weight: 500; }
     .harga-aktif { font-weight: 700; }
-
-    /* BADGE */
     .badge { display: inline-flex; align-items: center; gap: 3px; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
     .badge-naik { background: var(--red-pale); color: var(--red-text); }
     .badge-naik-panas { background: var(--orange-pale); color: var(--orange-text); }
@@ -101,42 +83,15 @@
     .badge-sama { background: #f5f5f5; color: #757575; }
     .tersedia-yes { color: var(--blue-light); font-weight: 700; font-size: 0.78rem; }
     .tersedia-no { color: #ccc; font-size: 0.78rem; }
-
-    /* STATE */
     .state-box { text-align: center; padding: 50px 20px; color: var(--text-muted); }
     .state-box .icon { font-size: 2.2rem; margin-bottom: 10px; }
     .state-box p { font-size: 0.85rem; }
     .spinner { width: 32px; height: 32px; border: 3px solid var(--blue-border); border-top: 3px solid var(--blue-light); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 14px; }
-
-    /* SCROLL TOP */
-    #scroll-top { position: fixed; bottom: 24px; right: 20px; width: 40px; height: 40px; background: var(--blue-mid); color: var(--white); border: none; border-radius: 50%; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.15); opacity: 0; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s; z-index: 200; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #scroll-top { position: fixed; bottom: 24px; right: 20px; width: 40px; height: 40px; background: var(--blue-mid); color: var(--white); border: none; border-radius: 50%; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,0.12); opacity: 0; transform: translateY(10px); transition: opacity 0.2s, transform 0.2s; z-index: 200; }
     #scroll-top.visible { opacity: 1; transform: translateY(0); }
     #scroll-top:hover { background: var(--blue-dark); }
-
     footer { text-align: center; margin-top: 40px; color: var(--text-muted); font-size: 0.7rem; }
-
-    /* ── ANIMATIONS ─────────────────────────────────────────── */
-    @keyframes spin         { to { transform: rotate(360deg); } }
-    @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeUp        { from { opacity: 0; transform: translateY(16px); }  to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn        { from { opacity: 0; transform: translateY(10px); }  to { opacity: 1; transform: translateY(0); } }
-    @keyframes pulse         { 0%, 100% { box-shadow: 0 0 0 0 rgba(230,81,0,0.4); } 50% { box-shadow: 0 0 0 5px rgba(230,81,0,0); } }
-
-    header     { animation: fadeSlideDown 0.4s ease both; }
-    .controls  { animation: fadeUp 0.4s 0.10s ease both; }
-    .stats-bar { animation: fadeUp 0.4s 0.18s ease both; }
-    .kat-block { animation: fadeIn 0.35s ease both; }
-    .kat-block:nth-child(1) { animation-delay: 0.05s; }
-    .kat-block:nth-child(2) { animation-delay: 0.10s; }
-    .kat-block:nth-child(3) { animation-delay: 0.15s; }
-    .kat-block:nth-child(4) { animation-delay: 0.20s; }
-    .kat-block:nth-child(5) { animation-delay: 0.25s; }
-    .kat-block:nth-child(6) { animation-delay: 0.30s; }
-    .kat-block:nth-child(7) { animation-delay: 0.35s; }
-    .kat-block:nth-child(8) { animation-delay: 0.40s; }
-    .badge-naik-panas { animation: pulse 2s ease infinite; }
-
-    /* RESPONSIVE */
     @media (max-width: 600px) {
       header { padding: 18px 16px 16px; }
       .controls, .stats-bar, .table-wrap { padding: 0 10px; }
@@ -205,33 +160,31 @@
     const AUTO_REFRESH_S = 30 * 60;
     const NAIK_THRESHOLD = 10;
 
-    var allData    = [];
-    var categories = [];
-    var katOpen    = {};
-    var countdown  = AUTO_REFRESH_S;
-    var countdownTimer;
+    let allData    = [];
+    let categories = [];
+    const katOpen  = {};
+    let countdown  = AUTO_REFRESH_S;
+    let countdownTimer;
 
-    // Tanggal hari ini
     document.getElementById("tanggal-hari-ini").textContent =
       new Date().toLocaleDateString("id-ID", { weekday:"long", day:"2-digit", month:"long", year:"numeric" });
 
-    // Scroll to top
-    var scrollBtn = document.getElementById("scroll-top");
-    window.addEventListener("scroll", function() {
+    const scrollBtn = document.getElementById("scroll-top");
+    window.addEventListener("scroll", () => {
       scrollBtn.classList.toggle("visible", window.scrollY > 300);
     });
 
     async function init() {
       try {
-        var res  = await fetch(API_URL);
-        var json = await res.json();
+        const res  = await fetch(API_URL);
+        const json = await res.json();
         if (json.status !== "ok") throw new Error(json.message || "Error dari server");
 
         allData    = json.data;
-        categories = [...new Set(allData.map(function(d){ return d.kategori; }))].sort();
-        categories.forEach(function(k){ if (katOpen[k] === undefined) katOpen[k] = false; });
+        categories = [...new Set(allData.map(d => d.kategori))].sort();
+        categories.forEach(k => { if (katOpen[k] === undefined) katOpen[k] = false; });
 
-        var updated = new Date(json.updated);
+        const updated = new Date(json.updated);
         document.getElementById("last-updated").textContent =
           "Data: " + updated.toLocaleString("id-ID", { day:"2-digit", month:"short", hour:"2-digit", minute:"2-digit" });
 
@@ -239,9 +192,9 @@
         renderAccordion(allData);
         startCountdown();
 
-      } catch(err) {
+      } catch (err) {
         document.getElementById("table-area").innerHTML =
-          '<div class="state-box"><div class="icon">⚠️</div><p>Gagal memuat data.<br><small>' + err.message + '</small></p></div>';
+          '<div class="state-box"><div class="icon">⚠️</div><p>Gagal memuat data. Periksa koneksi atau URL API.<br><small>' + err.message + '</small></p></div>';
         document.getElementById("last-updated").textContent = "Gagal memuat";
       }
     }
@@ -320,20 +273,20 @@
         var items  = grouped[kat];
         var isOpen = katOpen[kat] !== false;
         var block  = document.createElement("div");
-        block.className   = "kat-block" + (isOpen ? " open" : "");
+        block.className  = "kat-block" + (isOpen ? " open" : "");
         block.dataset.kat = kat;
 
         var rows = items.map(function(item) {
-          var st     = getStatus(item);
-          var pct    = item.hargaKemarin > 0 ? ((item.hargaAktif - item.hargaKemarin) / item.hargaKemarin * 100) : 0;
-          var isHot  = st === "naik" && pct >= NAIK_THRESHOLD;
-          var rc     = isHot ? ' class="naik-signifikan"' : '';
-          return '<tr' + rc + '>' +
+          var st  = getStatus(item);
+          var pct = item.hargaKemarin > 0 ? ((item.hargaAktif - item.hargaKemarin) / item.hargaKemarin * 100) : 0;
+          var isHot    = st === "naik" && pct >= NAIK_THRESHOLD;
+          var rowClass = isHot ? ' class="naik-signifikan"' : '';
+          return '<tr' + rowClass + '>' +
             '<td class="nama-col">' + escHtml(item.nama) + '</td>' +
             '<td>' + escHtml(item.satuan) + '</td>' +
             '<td class="harga hide-mobile">' + fmtRp(item.hargaKemarin) + '</td>' +
             '<td class="harga harga-aktif">' + fmtRp(item.hargaAktif) + '</td>' +
-            '<td>' + badgeHtml(st, item, isHot) + '</td>' +
+            '<td>' + badgeHtml(st, item, pct, isHot) + '</td>' +
             '<td class="hide-mobile">' + tersediaHtml(item.tersedia) + '</td>' +
             '</tr>';
         }).join("");
@@ -356,7 +309,8 @@
               '<th class="hide-mobile">Tersedia</th>' +
             '</tr></thead>' +
             '<tbody>' + rows + '</tbody>' +
-          '</table></div>';
+            '</table>' +
+          '</div>';
 
         block.querySelector(".kat-toggle").addEventListener("click", function() {
           var open = block.classList.toggle("open");
@@ -374,7 +328,7 @@
       return "sama";
     }
 
-    function badgeHtml(st, item, isHot) {
+    function badgeHtml(st, item, pct, isHot) {
       var selisih = item.hargaAktif - item.hargaKemarin;
       if (st === "naik") {
         var cls   = isHot ? "badge-naik-panas" : "badge-naik";
