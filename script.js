@@ -2,10 +2,10 @@ const API_URL        = "https://script.google.com/macros/s/AKfycbzky4j7P0KQ3-knT
 const AUTO_REFRESH_S = 30 * 60;
 const NAIK_THRESHOLD = 10;
 
-let allData      = [];
-let categories   = [];
-const katOpen    = {};
-let countdown    = AUTO_REFRESH_S;
+let allData    = [];
+let categories = [];
+const katOpen  = {};
+let countdown  = AUTO_REFRESH_S;
 let countdownTimer;
 
 // ── INIT PAGE ───────────────────────────────────────────────
@@ -131,20 +131,26 @@ function renderAccordion(data) {
     block.className   = "kat-block" + (isOpen ? " open" : "");
     block.dataset.kat = kat;
 
-    const rows = items.map(item => {
-      const st    = getStatus(item);
-      const pct   = item.hargaKemarin > 0 ? ((item.hargaAktif - item.hargaKemarin) / item.hargaKemarin * 100) : 0;
-      const isHot = st === "naik" && pct >= NAIK_THRESHOLD;
-      const rc    = isHot ? ' class="naik-signifikan"' : '';
-      return '<tr' + rc + '>' +
-        '<td class="nama-col">' + escHtml(item.nama) + '</td>' +
-        '<td>' + escHtml(item.satuan) + '</td>' +
-        '<td class="harga hide-mobile">' + fmtRp(item.hargaKemarin) + '</td>' +
-        '<td class="harga harga-aktif">' + fmtRp(item.hargaAktif) + '</td>' +
-        '<td>' + badgeHtml(st, item, isHot) + '</td>' +
-        '<td class="hide-mobile">' + tersediaHtml(item.tersedia) + '</td>' +
-        '</tr>';
-    }).join("");
+    // Baris data atau pesan kosong
+    let tbodyContent;
+    if (items.length === 0) {
+      tbodyContent = '<tr><td colspan="6"><div class="empty-kat">Tidak ada item di kategori ini.</div></td></tr>';
+    } else {
+      tbodyContent = items.map(item => {
+        const st    = getStatus(item);
+        const pct   = item.hargaKemarin > 0 ? ((item.hargaAktif - item.hargaKemarin) / item.hargaKemarin * 100) : 0;
+        const isHot = st === "naik" && pct >= NAIK_THRESHOLD;
+        const rc    = isHot ? ' class="naik-signifikan"' : '';
+        return '<tr' + rc + '>' +
+          '<td class="nama-col">' + namaHtml(item) + '</td>' +
+          '<td>' + escHtml(item.satuan) + '</td>' +
+          '<td class="harga hide-mobile">' + fmtRp(item.hargaKemarin) + '</td>' +
+          '<td class="harga harga-aktif">' + fmtRp(item.hargaAktif) + '</td>' +
+          '<td>' + badgeHtml(st, item, isHot) + '</td>' +
+          '<td class="hide-mobile">' + tersediaHtml(item.tersedia) + '</td>' +
+          '</tr>';
+      }).join("");
+    }
 
     block.innerHTML =
       '<button class="kat-toggle">' +
@@ -163,7 +169,7 @@ function renderAccordion(data) {
           '<th>Status</th>' +
           '<th class="hide-mobile">Tersedia</th>' +
         '</tr></thead>' +
-        '<tbody>' + rows + '</tbody>' +
+        '<tbody>' + tbodyContent + '</tbody>' +
       '</table></div>';
 
     block.querySelector(".kat-toggle").addEventListener("click", () => {
@@ -176,6 +182,18 @@ function renderAccordion(data) {
 }
 
 // ── HELPERS ──────────────────────────────────────────────────
+
+// Nama item + tooltip keterangan (kalau ada)
+function namaHtml(item) {
+  const ket = item.keterangan ? String(item.keterangan).trim() : "";
+  if (!ket) return escHtml(item.nama);
+  return '<span class="nama-wrap">' +
+    escHtml(item.nama) +
+    '<span class="ket-icon">ℹ</span>' +
+    '<span class="tooltip">' + escHtml(ket) + '</span>' +
+  '</span>';
+}
+
 function getStatus(item) {
   if (!item.hargaKemarin || !item.hargaAktif) return "baru";
   if (item.hargaAktif > item.hargaKemarin)    return "naik";
