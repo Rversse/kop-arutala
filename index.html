@@ -369,7 +369,7 @@
       <div class="brand-icon">🌿</div>
       <div class="brand-text">
         <h1>Koperasi Arutala</h1>
-        <p>PRICE LIST HARIAN</p>
+        <p>UPDATE HARIAN</p>
       </div>
     </div>
     <div id="last-updated">Memuat data…</div>
@@ -383,9 +383,6 @@
       </svg>
       <input id="search" type="search" placeholder="Cari nama item atau kategori…" autocomplete="off" />
     </div>
-    <select id="filter-kat">
-      <option value="">Semua Kategori</option>
-    </select>
     <label class="toggle-tersedia">
       <input type="checkbox" id="toggle-tersedia" checked />
       Hanya tersedia
@@ -432,13 +429,6 @@
         // Default: semua kategori terbuka
         categories.forEach(k => { if (katOpen[k] === undefined) katOpen[k] = false; });
 
-        const sel = document.getElementById("filter-kat");
-        categories.forEach(kat => {
-          const opt = document.createElement("option");
-          opt.value = kat; opt.textContent = kat;
-          sel.appendChild(opt);
-        });
-
         const updated = new Date(json.updated);
         document.getElementById("last-updated").textContent =
           `Update: ${updated.toLocaleString("id-ID", { day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" })}`;
@@ -459,11 +449,9 @@
     // ── FILTER ──────────────────────────────────────────────
     function getFiltered() {
       const keyword   = document.getElementById("search").value.toLowerCase().trim();
-      const katFilter = document.getElementById("filter-kat").value;
       const onlyAvail = document.getElementById("toggle-tersedia").checked;
 
       return allData.filter(item => {
-        const matchKat   = !katFilter || item.kategori === katFilter;
         const matchAvail = !onlyAvail || String(item.tersedia).toLowerCase() !== "tidak";
         const matchKw    = !keyword
           || item.nama.toLowerCase().includes(keyword)
@@ -594,7 +582,6 @@
     }
 
     document.getElementById("search").addEventListener("input", applyFilters);
-    document.getElementById("filter-kat").addEventListener("change", applyFilters);
     document.getElementById("toggle-tersedia").addEventListener("change", applyFilters);
 
     init();
