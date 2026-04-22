@@ -64,17 +64,16 @@ header { background: var(--white); color: var(--text-main); border-bottom: 3px s
 .kat-arrow { font-size: 0.75rem; transition: transform 0.25s ease; }
 .kat-block.open .kat-arrow { transform: rotate(180deg); }
 
-/* Accordion body — smooth slide + scroll */
+/* Accordion — smooth slide, tanpa scrollbar */
 .kat-body { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; }
-.kat-block.open .kat-body { max-height: none; overflow: visible; }
-.kat-body { max-height: 0; overflow: hidden; transition: max-height 0.25s ease-out; }
+.kat-block.open .kat-body { max-height: 9999px; overflow: visible; }
 
 /* ── TABLE ───────────────────────────────────────────────── */
 table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
 thead { background: var(--blue-dark); color: var(--white); }
 thead th { padding: 11px 12px; font-weight: 600; font-size: 0.72rem; letter-spacing: 0.07em; text-transform: uppercase; white-space: nowrap; text-align: center; }
 thead th.th-nama { text-align: center; }
-tbody tr { border-bottom: 1px solid #e8f0fe; transition: background 0.12s, transform 0.1s; }
+tbody tr { border-bottom: 1px solid #e8f0fe; transition: background 0.12s; }
 tbody tr:last-child { border-bottom: none; }
 tbody tr:hover { background: #f0f7ff; }
 td { padding: 10px 12px; white-space: nowrap; text-align: center; vertical-align: middle; }
@@ -82,7 +81,6 @@ td.nama-col { text-align: left; white-space: normal; min-width: 140px; font-weig
 tr.naik-signifikan { background: var(--orange-pale) !important; }
 tr.naik-signifikan:hover { background: #ffe0b2 !important; }
 tr.naik-signifikan td.nama-col { color: var(--orange-text); }
-.harga { font-weight: 500; }
 .harga-aktif { font-weight: 700; }
 
 /* ── TOOLTIP KETERANGAN ──────────────────────────────────── */
@@ -95,7 +93,6 @@ tr.naik-signifikan td.nama-col { color: var(--orange-text); }
   font-size     : 0.68rem;
   padding       : 5px 10px;
   border-radius : 6px;
-  white-space   : nowrap;
   max-width     : 220px;
   white-space   : normal;
   position      : absolute;
@@ -119,13 +116,7 @@ tr.naik-signifikan td.nama-col { color: var(--orange-text); }
 .ket-icon { font-size: 0.65rem; color: var(--blue-light); margin-left: 4px; cursor: help; vertical-align: middle; }
 
 /* Data kosong per kategori */
-.empty-kat {
-  padding    : 16px 14px;
-  font-size  : 0.78rem;
-  color      : var(--text-muted);
-  text-align : center;
-  font-style : italic;
-}
+.empty-kat { padding: 16px 14px; font-size: 0.78rem; color: var(--text-muted); text-align: center; font-style: italic; }
 
 /* ── BADGE ───────────────────────────────────────────────── */
 .badge { display: inline-flex; align-items: center; gap: 3px; font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
@@ -133,8 +124,8 @@ tr.naik-signifikan td.nama-col { color: var(--orange-text); }
 .badge-naik-panas { background: var(--orange-pale); color: var(--orange-text); }
 .badge-turun      { background: #e8f5e9;             color: #2e7d32; }
 .badge-sama       { background: #f5f5f5;             color: #757575; }
-.tersedia-yes { color: var(--blue-light); font-weight: 700; font-size: 0.78rem; }
-.tersedia-no  { color: #ccc; font-size: 0.78rem; }
+.stok-ada  { color: var(--blue-light); font-weight: 700; font-size: 0.78rem; }
+.stok-habis { color: #ccc; font-size: 0.78rem; }
 
 /* ── STATE / LOADING ─────────────────────────────────────── */
 .state-box { text-align: center; padding: 50px 20px; color: var(--text-muted); }
@@ -177,7 +168,6 @@ header     { animation: fadeSlideDown 0.4s ease both; }
   td, thead th { padding: 8px 8px; font-size: 0.75rem; }
   .hide-mobile { display: none; }
   .btn { font-size: 0.72rem; padding: 7px 10px; }
-  /* Tooltip di mobile — muncul di bawah supaya tidak terpotong */
   .nama-wrap .tooltip { bottom: auto; top: calc(100% + 6px); }
   .nama-wrap .tooltip::after { top: auto; bottom: 100%; border-color: transparent transparent var(--blue-dark) transparent; }
 }

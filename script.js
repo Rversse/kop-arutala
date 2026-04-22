@@ -131,10 +131,9 @@ function renderAccordion(data) {
     block.className   = "kat-block" + (isOpen ? " open" : "");
     block.dataset.kat = kat;
 
-    // Baris data atau pesan kosong
     let tbodyContent;
     if (items.length === 0) {
-      tbodyContent = '<tr><td colspan="6"><div class="empty-kat">Tidak ada item di kategori ini.</div></td></tr>';
+      tbodyContent = '<tr><td colspan="5"><div class="empty-kat">Tidak ada item di kategori ini.</div></td></tr>';
     } else {
       tbodyContent = items.map(item => {
         const st    = getStatus(item);
@@ -144,10 +143,9 @@ function renderAccordion(data) {
         return '<tr' + rc + '>' +
           '<td class="nama-col">' + namaHtml(item) + '</td>' +
           '<td>' + escHtml(item.satuan) + '</td>' +
-          '<td class="harga hide-mobile">' + fmtRp(item.hargaKemarin) + '</td>' +
-          '<td class="harga harga-aktif">' + fmtRp(item.hargaAktif) + '</td>' +
+          '<td class="harga-aktif">' + fmtRp(item.hargaAktif) + '</td>' +
           '<td>' + badgeHtml(st, item, isHot) + '</td>' +
-          '<td class="hide-mobile">' + tersediaHtml(item.tersedia) + '</td>' +
+          '<td class="hide-mobile">' + stokHtml(item.tersedia) + '</td>' +
           '</tr>';
       }).join("");
     }
@@ -164,10 +162,9 @@ function renderAccordion(data) {
         '<table><thead><tr>' +
           '<th class="th-nama">Nama Barang</th>' +
           '<th>Satuan</th>' +
-          '<th class="hide-mobile">Harga Lama</th>' +
           '<th>Harga</th>' +
           '<th>Status</th>' +
-          '<th class="hide-mobile">Tersedia</th>' +
+          '<th class="hide-mobile">Stok</th>' +
         '</tr></thead>' +
         '<tbody>' + tbodyContent + '</tbody>' +
       '</table></div>';
@@ -182,8 +179,6 @@ function renderAccordion(data) {
 }
 
 // ── HELPERS ──────────────────────────────────────────────────
-
-// Nama item + tooltip keterangan (kalau ada)
 function namaHtml(item) {
   const ket = item.keterangan ? String(item.keterangan).trim() : "";
   if (!ket) return escHtml(item.nama);
@@ -213,10 +208,10 @@ function badgeHtml(st, item, isHot) {
   return '<span class="badge badge-sama">— Sama</span>';
 }
 
-function tersediaHtml(val) {
+function stokHtml(val) {
   return String(val).toLowerCase() === "tidak"
-    ? '<span class="tersedia-no">✗ Tidak</span>'
-    : '<span class="tersedia-yes">✓ Ya</span>';
+    ? '<span class="stok-habis">Tidak</span>'
+    : '<span class="stok-ada">Ada</span>';
 }
 
 function fmtRp(val) {
