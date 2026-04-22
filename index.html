@@ -363,18 +363,6 @@
 </head>
 
 <body>
-  <!-- LOGIN OVERLAY -->
-<div id="login-overlay" style="
-  position:fixed;inset:0;background:#1a2e1a;
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;z-index:9999;gap:16px;">
-  <div style="font-size:48px;">🌿</div>
-  <div style="color:#fff;font-family:'Roboto Mono',monospace;font-size:1rem;letter-spacing:0.1em;">KOPERASI ARUTALA</div>
-  <input id="pass-input" type="password" placeholder="Masukkan password"
-    style="padding:10px 16px;border-radius:8px;border:none;font-family:'Roboto Mono',monospace;font-size:0.9rem;outline:none;width:220px;text-align:center;" />
-  <div id="pass-err" style="color:#ff6b6b;font-size:0.75rem;font-family:'Roboto Mono',monospace;min-height:16px;"></div>
-</div>
-
   <!-- HEADER -->
   <header>
     <div class="brand">
@@ -422,26 +410,6 @@
   </footer>
 
   <script>
-    // ── PASSWORD ─────────────────────────────────────────────
-const PASSWORD = "979797"; // ganti sesuai keinginan
-
-(function() {
-  const saved = sessionStorage.getItem("auth");
-  if (saved === PASSWORD) {
-    document.getElementById("login-overlay").style.display = "none";
-    return;
-  }
-  document.getElementById("pass-input").addEventListener("keydown", function(e) {
-    if (e.key !== "Enter") return;
-    if (this.value === PASSWORD) {
-      sessionStorage.setItem("auth", PASSWORD);
-      document.getElementById("login-overlay").style.display = "none";
-    } else {
-      document.getElementById("pass-err").textContent = "Password salah.";
-      this.value = "";
-    }
-  });
-})();
     const API_URL = "https://script.google.com/macros/s/AKfycbzky4j7P0KQ3-knTcWSxH8yJPVKUpnGHNs3zX7P0kkl67_oaC2SENB1rJ3urR09hfIr/exec";
 
     let allData   = [];
