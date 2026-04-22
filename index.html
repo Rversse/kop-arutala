@@ -505,7 +505,6 @@
           const st = getStatus(item);
           return `
             <tr>
-              <td><span class="id-chip">${item.id}</span></td>
               <td class="nama-col">${escHtml(item.nama)}</td>
               <td>${escHtml(item.satuan)}</td>
               <td class="harga hide-mobile">${fmtRp(item.hargaKemarin)}</td>
@@ -527,7 +526,6 @@
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th class="th-nama">Nama Item</th>
                   <th>Satuan</th>
                   <th class="hide-mobile">Kemarin</th>
